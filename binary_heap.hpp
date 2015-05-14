@@ -163,6 +163,7 @@ namespace ys
 		 * ヒープ内のデータを書き換え
 		 * @param[in]	i	ヒープのインデックス
 		 * @param[in]	data	書き換える値
+		 * @note	不正な引数 @a i を用いた際の動作は不定。
 		 * @note	最悪計算量はΘ(log n)。
 		 */
 		void
