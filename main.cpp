@@ -16,13 +16,16 @@ compare(const int& parent,
 	return 1;
 }
 
-int print(ys::BinaryHeap<int>* heap)
+void
+print(ys::BinaryHeap<int>* heap)
 {
 	const size_t l = heap->size();
 
 	for (size_t i(0); i < l; ++i) {
-		std::printf("[%lu]\t%d\n", i, heap->get(i));
+		std::printf("%lu=>%d", i, heap->get(i));
+		if (i < l - 1) std::printf(", ");
 	}
+	std::printf("\n");
 }
 
 int
@@ -34,15 +37,18 @@ main()
 	heap->prepare(data, sizeof(data)/sizeof(data[0]), compare);
 	print(heap);
 
-	std::printf(">>>> PUSH: 3\n");
-	heap->push(3);
+	int n(3);
+	std::printf("PUSH: %d\n", n);
+	heap->push(n);
 	print(heap);
 
-	std::printf(">>>> UPDATE: [0] 4\n");
-	heap->update(0, 4);
+	n = 7;
+	std::printf("UPDATE: %d=>%d\n", 2, n);
+	heap->update(2, n);
 	print(heap);
 
-	std::printf(">>>> POP: %d\n", heap->pop());
+	n = heap->pop();
+	std::printf("POP: %d\n", n);
 	print(heap);
 
 	delete heap;

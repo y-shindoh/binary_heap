@@ -20,7 +20,7 @@ namespace ys
 	{
 	private:
 
-		std::vector<TYPE> data_;	///< BIT本体
+		std::vector<TYPE> data_;	///< ヒープ本体
 
 		/**
 		 * ヒープ条件の比較用関数
