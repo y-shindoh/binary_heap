@@ -67,7 +67,7 @@ namespace ys
 				while (i < l) {
 					j = i * 2 + 1;
 					if (l <= j) break;
-					k = i * 2 + 2;
+					k = j + 1;
 					if (k < l && 0 < compare_(data_[j], data_[k])) j = k;
 					if (0 >= compare_(data_[i], data_[j])) break;
 					tmp = data_[j];
