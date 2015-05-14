@@ -124,6 +124,7 @@ namespace ys
 		 * ヒープにデータを追加
 		 * @param[in]	data	追加するデータ
 		 * @note	最悪計算量はΘ(log n)。
+					ただし、 @a data_ のメモリ領域が伸びた場合はΘ(n)。
 		 */
 		void
 		push(const TYPE& data)
