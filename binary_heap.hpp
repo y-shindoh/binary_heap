@@ -6,6 +6,9 @@
  * @note	アルゴリズムイントロダクション第1巻を参考に実装した。
  */
 
+#ifndef	__BINARY_HEAP_HPP__
+#define __BINARY_HEAP_HPP__	"binary_heap.hpp"
+
 #include <cstddef>
 #include <cassert>
 #include <vector>
@@ -197,3 +200,5 @@ namespace ys
 			}
 	};
 };
+
+#endif	// __BINARY_HEAP_HPP__
