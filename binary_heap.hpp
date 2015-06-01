@@ -103,6 +103,10 @@ namespace ys
 				size_t length,
 				int (* compare)(const TYPE&, const TYPE&))
 			{
+				assert(data);
+				assert(length);
+				assert(compare);
+
 				compare_ = compare;
 				data_.reserve(length);
 
@@ -110,6 +114,17 @@ namespace ys
 					data_.push_back(data[i]);
 					heapify_up(i);
 				}
+			}
+
+		/**
+		 * ヒープが空かどうかを確認
+		 * @return	true: ヒープは空, false: ヒープは空でない
+		 * @note	最悪計算量はΘ(1)。
+		 */
+		bool
+		empty() const
+			{
+				return data_.empty();
 			}
 
 		/**
@@ -146,15 +161,14 @@ namespace ys
 		TYPE
 		pop()
 			{
-				const size_t l = data_.size();
-
-				assert(l);
+				assert(!data_.empty());
 
 				TYPE value = data_[0];
+				TYPE tmp = data_.back();
 
-				if (1 < l) {
-					TYPE tmp = data_[l-1];
-					data_.pop_back();
+				data_.pop_back();
+
+				if (!data_.empty()) {
 					data_[0] = tmp;
 					heapify_down(0);
 				}
@@ -173,6 +187,9 @@ namespace ys
 		update(size_t i,
 			   const TYPE& data)
 			{
+				assert(compare_);
+				assert(i < data_.size());
+
 				data_[i] = data;
 
 				if (0 < i) {
@@ -187,6 +204,19 @@ namespace ys
 			}
 
 		/**
+		 * ヒープの先頭データを直接取得
+		 * @return	ヒープの先頭データ
+		 * @note	最悪計算量はΘ(1)。
+		 */
+		TYPE
+		top() const
+			{
+				assert(!data_.empty());
+
+				return data_.front();
+			}
+
+		/**
 		 * ヒープ内のデータを直接取得
 		 * @param[in]	i	ヒープのインデックス
 		 * @return	ヒープ内の指定した位置のデータ
@@ -194,8 +224,10 @@ namespace ys
 		 * @note	最悪計算量はΘ(1)。
 		 */
 		TYPE
-		get(size_t i = 0) const
+		get(size_t i) const
 			{
+				assert(i < data_.size());
+
 				return data_[i];
 			}
 	};
