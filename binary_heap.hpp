@@ -12,6 +12,7 @@
 #include <cstddef>
 #include <cassert>
 #include <vector>
+#include <utility>
 
 namespace ys
 {
@@ -42,14 +43,11 @@ namespace ys
 		heapify_up(size_t i)
 			{
 				size_t j;
-				TYPE tmp;
 
 				while (0 < i) {
 					j = (i - 1) / 2;
 					if (0 >= compare_(data_[j], data_[i])) break;
-					tmp = data_[j];
-					data_[j] = data_[i];
-					data_[i] = tmp;
+					std::swap(data_[j], data_[i]);
 					i = j;
 				}
 			}
@@ -65,7 +63,6 @@ namespace ys
 			{
 				size_t j, k;
 				const size_t l = data_.size();
-				TYPE tmp;
 
 				while (i < l) {
 					j = i * 2 + 1;
@@ -73,9 +70,7 @@ namespace ys
 					k = j + 1;
 					if (k < l && 0 < compare_(data_[j], data_[k])) j = k;
 					if (0 >= compare_(data_[i], data_[j])) break;
-					tmp = data_[j];
-					data_[j] = data_[i];
-					data_[i] = tmp;
+					std::swap(data_[j], data_[i]);
 					i = j;
 				}
 			}
