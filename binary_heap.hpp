@@ -47,7 +47,7 @@ namespace ys
 				while (0 < i) {
 					j = (i - 1) / 2;
 					if (0 >= compare_(data_[j], data_[i])) break;
-					std::swap(data_[j], data_[i]);
+					std::swap<TYPE>(data_[j], data_[i]);
 					i = j;
 				}
 			}
@@ -70,7 +70,7 @@ namespace ys
 					k = j + 1;
 					if (k < l && 0 < compare_(data_[j], data_[k])) j = k;
 					if (0 >= compare_(data_[i], data_[j])) break;
-					std::swap(data_[j], data_[i]);
+					std::swap<TYPE>(data_[j], data_[i]);
 					i = j;
 				}
 			}
